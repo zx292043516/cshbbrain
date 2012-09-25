@@ -1,0 +1,59 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+<meta name="format-detection" content="telephone=no">
+<meta name="viewport" content="minimum-scale=1.0,maximum-scale=1,width=device-width,user-scalable=no" />
+<title>首页</title>
+<!--link rel="stylesheet" type="text/css" media="all" href="css/style.css" /-->
+<link rel="stylesheet" type="text/css" media="all and (orientation:portrait)" href="css/style.css" />
+<link rel="stylesheet" type="text/css" media="all and (orientation:landscape)" href="css/style_land.css"/>
+<script src="js/scrollpic.js" type="text/javascript"></script>
+
+</head>
+
+<body>
+<section class="nav">
+ <div class="subNav">
+    <div class="slipMarquee" id="stock">
+
+    </div>
+	<div>
+		<input type="text" id="txt" />
+		<button value="send" onclick="send();">send</button>
+	</div>
+  </div>  
+</section>
+
+<script language="javascript" type="text/javascript">
+window.WebSocket = window.WebSocket || window.MozWebSocket;
+var socket = new WebSocket("ws://192.168.1.220:9090/echo"); 
+
+socket.onopen = function(){
+	//socket.send('i am client');
+
+	socket.onclose = function(e){
+		alert('close the socket');
+	};
+
+	socket.onerror = function(msg){
+		alert('error:' + msg );
+	};
+};
+
+
+socket.onmessage = function(e) {// 消息回来就显示 onopen:打开连接时候执行；onclose:关闭连接时执行；onload:载入时执行；onmessage:有消息时执行；send:
+	document.getElementById('stock').innerHTML = '<font color =red>' + event.data + '</font>';
+}; 
+
+function send(){
+	socket.send(document.getElementById('txt').value);
+}
+
+</script> 
+
+</body>
+
+</html>

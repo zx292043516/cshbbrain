@@ -27,7 +27,7 @@ public class Server{
 	 * <li>方法名：main
 	 * <li>@param args
 	 * <li>返回类型：void
-	 * <li>说明：http服务器，设置httpdecoder,httpProcess,httpcoder给服务器
+	 * <li>说明：WebSocket服务器，设置websocketdecoder,websocketProcess,websocketcoder给服务器
 	 * <li>创建人：CshBBrain;技术博客：http://cshbbrain.iteye.com/
 	 * <li>创建日期：2011-11-18
 	 * <li>修改人： 

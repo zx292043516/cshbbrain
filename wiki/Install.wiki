@@ -1,5 +1,5 @@
-#summary One-sentence summary of this page.
-#labels Install,Config
+#labels Install,Config,安装,配置,运行,测试
+#Introduction how to install config run and test CshBBrain.
 
 = Introduction =
 

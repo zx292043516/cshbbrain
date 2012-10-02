@@ -3,10 +3,15 @@ package com.jason.util;
 import java.io.Serializable;
 import java.io.UnsupportedEncodingException;
 import java.math.BigDecimal;
+import java.net.URLDecoder;
+import java.nio.charset.UnsupportedCharsetException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Collection;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.apache.commons.lang.StringUtils;
 
@@ -22,6 +27,7 @@ import org.apache.commons.lang.StringUtils;
 public class MyStringUtil {
 	public static SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 	public static SimpleDateFormat formatTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
+	private static final Pattern PARAM_PATTERN = Pattern.compile("([^=]*)=([^&]*)&*");
 	/**
 	 * <li>方法名：Long2Int
 	 * <li>@param ldata
@@ -654,4 +660,39 @@ public class MyStringUtil {
 	  return weekDaysName[intWeek]; 
 	} 
 
+	/**
+	 * 
+	 * <li>方法名：decodeParams
+	 * <li>@param msg
+	 * <li>@param requestData
+	 * <li>返回类型：void
+	 * <li>说明：解析请求参数键值对
+	 * <li>创建人：CshBBrain
+	 * <li>创建日期：2011-11-25
+	 * <li>修改人： 
+	 * <li>修改日期：
+	 */
+    public static HashMap<String,String> parseKeyValue(String msg){    	
+    	if(isBlank(msg)){
+            return null;
+        }
+    	
+    	String values = null;
+        try{
+        	values = URLDecoder.decode(msg, CoderUtils.UTF8);
+        }catch(UnsupportedEncodingException e){
+            throw new UnsupportedCharsetException(CoderUtils.UTF8);
+        }
+        
+        HashMap<String,String> requestData = new HashMap<String,String>();
+    	
+        Matcher m = PARAM_PATTERN.matcher(values);
+        int pos = 0;
+        while (m.find(pos)) {
+            pos = m.end();            
+            requestData.put(m.group(1), m.group(2)); 
+        }
+        
+        return requestData;
+    }
 }

@@ -46,6 +46,10 @@ public class MessageFrame{
 	private byte[] maskingKey = null;// 32bit
 
 	private byte[] payloadData;
+	
+	public MessageFrame(){
+		
+	}
 
 	public byte getFin() {
 		return fin;

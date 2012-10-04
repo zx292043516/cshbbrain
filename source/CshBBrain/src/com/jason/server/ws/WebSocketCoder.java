@@ -114,9 +114,25 @@ public class WebSocketCoder implements CoderHandler {
 		}
     }
 	
+	/**
+	 * 
+	 * <li>方法名：codeVersion6
+	 * <li>@param sockector
+	 * <li>@param msg
+	 * <li>返回类型：void
+	 * <li>说明：对websocket协议进行编码
+	 * <li>创建人：CshBBrain, 技术博客：http://cshbbrain.iteye.com/
+	 * <li>创建日期：2012-10-2
+	 * <li>修改人： 
+	 * <li>修改日期：
+	 */
 	public void codeVersion6(Client sockector, Response msg){		
 		byte[] msgs = CoderUtils.toByte(msg.getBody());
 		MessageFrame messageFrame = sockector.getRequestWithFile().<MessageFrame>getMessageHeader();
+		
+		if(messageFrame == null){
+			messageFrame = new MessageFrame();
+		}
 		messageFrame.setDateLength(msgs.length);
 		
 		byte[] headers = new byte[2];

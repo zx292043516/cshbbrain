@@ -175,10 +175,9 @@ public class MasterServer {
 				Response msg = broadMessages.take();//获取广播消息
 				Iterator<Client> it = this.clients.values().iterator();
 				while(it.hasNext()){
-					System.out.println(msg.getBody());
+					log.info(msg.getBody());
 					Client socketer = it.next();
-					socketer.addResponseMsg(msg);
-					socketer.registeWrite();
+					socketer.receiveMessage(msg);
 				}
 			}catch(InterruptedException e){
 				e.printStackTrace();

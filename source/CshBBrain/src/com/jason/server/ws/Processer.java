@@ -70,7 +70,7 @@ import com.jason.server.ws.biz.Service;
  */
 public class Processer implements ProcessHandler {
 	private static Log log = LogFactory.getLog(Processer.class);// 日志记录器
-	public void process(Client sockector) {
+	public void process(Client sockector){
 		ConcurrentLinkedQueue<HashMap<String,String>> msgs = sockector.getBizObjects();
 		if(msgs.isEmpty()){
 			return;
@@ -79,7 +79,7 @@ public class Processer implements ProcessHandler {
 		HashMap<String,String> msg = msgs.poll();
 		while(msg != null){
 			msg.put(Constants.FILED_IP, sockector.getIp());
-			Response rm = Service.getInstance().service(msg);
+			Response rm = Service.getInstance().service(sockector,msg);
 			if(rm != null){
 				sockector.addResponseMsg(rm);
 			}

@@ -43,7 +43,28 @@ public class Client{
 	private DecoderHandler decoderHandler;// 解码处理器
 	private ProcessHandler processHandler;// 业务处理器
 	private String protocolVersion = "0";//协议版本
+	private Object session;//连接会话对象，由开发者自己定义使用
 	
+	/**
+	 * 
+	 * <li>方法名：getSession
+	 * <li>@param <T>
+	 * <li>@return
+	 * <li>返回类型：T
+	 * <li>说明：获取连接会话对象
+	 * <li>创建人：CshBBrain, 技术博客：http://cshbbrain.iteye.com/
+	 * <li>创建日期：2012-10-3
+	 * <li>修改人： 
+	 * <li>修改日期：
+	 */
+	public <T> T getSession() {//获取会话对象
+		return (T)session;
+	}
+
+	public void setSession(Object session) {
+		this.session = session;
+	}
+
 	private static int callMax = 10000;// 最大呼叫10万次
 	private int callCount = 0;
 	
@@ -606,5 +627,26 @@ public class Client{
 	 */
 	public int getProtocolVersionInt(){
 		return Integer.valueOf(this.protocolVersion);
+	}
+	
+	/**
+	 * 
+	 * <li>方法名：broadCastMessage
+	 * <li>
+	 * <li>返回类型：void
+	 * <li>说明：发送广播消息
+	 * <li>创建人：CshBBrain, 技术博客：http://cshbbrain.iteye.com/
+	 * <li>创建日期：2012-10-2
+	 * <li>修改人： 
+	 * <li>修改日期：
+	 */
+	public void receiveMessage(Response msg){
+		try{
+			this.responseMsgs.add(msg);		
+			this.inputMonitorWorker.registeWrite(key);
+		}catch(Exception e){
+			e.printStackTrace();
+			this.close();
+		}
 	}
 }

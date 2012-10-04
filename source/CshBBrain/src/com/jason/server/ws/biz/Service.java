@@ -9,6 +9,8 @@
 package com.jason.server.ws.biz;
 
 import java.util.HashMap;
+
+import com.jason.server.Client;
 import com.jason.server.Response;
 import com.jason.util.MyStringUtil;
 
@@ -41,7 +43,7 @@ public class Service{
 	 * <li>修改人： 
 	 * <li>修改日期：
 	 */
-	public Response service(HashMap<String, String> requestData){
+	public Response service(Client sockector, HashMap<String, String> requestData){
 		if(requestData == null){
 			return null;
 		}
@@ -61,4 +63,6 @@ public class Service{
 		
 		return responseMessage;
 	}
+	
+	
 }

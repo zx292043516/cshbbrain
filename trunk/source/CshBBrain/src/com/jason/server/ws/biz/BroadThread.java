@@ -8,11 +8,8 @@
  */
 package com.jason.server.ws.biz;
 
-import java.util.Iterator;
-
 import com.jason.server.Response;
 import com.jason.server.MasterServer;
-import com.jason.server.Client;
 
 /**
  * <li>类型名称：

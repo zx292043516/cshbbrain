@@ -8,7 +8,7 @@
 = Details =
 
 在介绍CshBBrain服务器架构前，我们先分析下业界流行NIO框架的架构，目前业界流行的NIO框架有Mina,Netty,Grizzly等。他们都采用了Reactor模式，下面上张Reactor模式的示意图：
-
+http://dl.iteye.com/upload/attachment/0074/6411/c332f366-7e95-3af7-b999-4979be3f76e2.jpg
 
 1.核心组件包括：
 1.1.Synchronous Event Demultiplexexer:Event loop + 事件分离
@@ -41,7 +41,7 @@ CshBBrain：1 + n * CPU内核数量 （运行时可根据需要自己灵活配�
 CshBBrain 采用的是第二种分工模型。
  
 上张CshBBrain服务器的架构图：
-
+http://dl.iteye.com/upload/attachment/0074/6409/494df042-6bf2-3af4-8eec-08f8c1a44c67.jpg
 
  在开发CshBBrain之前，有研究过Mina和Netty，从Mina和Netty的设计上借鉴了不少思想。
 1.connectMonitor：负责accept和建立连接，并将连接的Read和Write事件分派给具体的readWriteMonitor线程，分配策略采用简单的平均分配法。

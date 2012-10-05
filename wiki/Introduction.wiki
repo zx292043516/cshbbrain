@@ -1,9 +1,6 @@
-WebSocket Server CshBBrain
+WebSocket  Server CshBBrain
 = Introduction =
-
 介绍项目的基本情况。
-
-
 = Details =
 
 通过1年多的努力，今天终于发布了开源WebSocket服务器项目CshBBrain.由于本人比较懒，就使用了我的网名作为项目的名称。项目诞生于公司以前的一个股指推送服务器（见博客http://cshbbrain.iteye.com/blog/1207471），股指推送服务器每5秒就向手机、平板电脑上的网页推送最新的股指信息。由于当时本人对java NIO 研究不过深入，所以一直没有写出满意的基于NIO的websocket服务器。通过1年多的努力研究基于NIO的高性能的WebSocket服务器CshBBrain终于诞生了。

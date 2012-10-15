@@ -113,4 +113,8 @@ Sec-WebSocket-Accept: 0FDvRkfYrdLsbNBFPe+SoM010x0=
 Sec-WebSocket-Origin: null
 Sec-WebSocket-Location: ws://192.168.1.222:9090/echo
 
-在文本输入框中随便输入一串字符abc,服务器返回Hello,abc.那么恭喜你已经成功安装配置好项目，你可以试着在项目中添加你自己的业务了。
+在文本输入框中随便输入一串字符abc,服务器返回
+
+{{{jason,the msg is : abc}}}
+
+那么恭喜你已经成功安装配置好项目，你可以试着在项目中添加你自己的业务了。

@@ -219,7 +219,7 @@ public class StockSpider {
 			
 			Response rs = new Response();			
 			rs.setBody(sb.toString());
-			System.out.println(sb.toString());
+			//System.out.println(sb.toString());
 			MasterServer.addBroadMessage(rs);// 将广播消息添加到websocketer服务器的广播消息队列中
 						
 			if(end - begin < 1000 * 3){

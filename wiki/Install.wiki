@@ -1,4 +1,4 @@
-#labels Install,Config,安装,配置,运行,测试
+#labels CshBBrain,WebSocket,NIO,HTML5,多线程,分布式
 #Introduction how to install config run and test CshBBrain.
 
 = Introduction =

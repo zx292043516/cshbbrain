@@ -174,7 +174,7 @@ public class ClustersDecoder extends DecoderHandler {
     		}
     	}
     	
-    	if(!requestData.readFinish()){// 是否读取完数据
+    	if(!requestData.readFinish()){// 是否读取完数据,读取完毕对数据进行处理
     		int dataLength = buffer.limit() - buffer.position();
     		byte[] datas = new byte[dataLength];
     		buffer.get(datas);
@@ -192,15 +192,17 @@ public class ClustersDecoder extends DecoderHandler {
     		requestData.getByteDatas().add(datas);
     		
     		try{
-				String a = new String(datas,"utf-8");
+				/*String a = new String(datas,"utf-8");
 				log.info("jason,the msg is : " + a);
+				requestData.getByteDatas();
 				
 				HashMap<String,String> data = new HashMap<String,String>();
 				sockector.getRequestWithFile().setRequestData(data);
-				data.put(Constants.FILED_MSG, a);
-				
-			}catch(UnsupportedEncodingException e){
-				e.printStackTrace();
+				data.put(Constants.FILED_MSG, a);*/
+				// 对数据进行处理
+				sockector.getRequestWithFile().setRequestData(MyStringUtil.parseKeyValue(requestData.getRequestMessage()));				
+			}catch(Exception e){
+				log.info(e.getMessage());// 日志消息
 			}
     	}    	
 	}

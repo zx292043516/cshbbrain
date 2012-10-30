@@ -255,7 +255,7 @@ public class Response {
 	 * <li>修改人： 
 	 * <li>修改日期：
 	 */
-	private void bufferedContent(){
+	public void bufferedContent(){
 		this.currentBufferQueue = new ConcurrentLinkedQueue<ByteBuffer>();// 当前正在处理的缓冲区队列
 		
 		ByteBuffer headerBuffer = processBuffered(this.header);		

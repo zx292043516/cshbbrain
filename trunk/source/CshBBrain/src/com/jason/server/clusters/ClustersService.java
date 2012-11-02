@@ -9,10 +9,10 @@
 package com.jason.server.clusters;
 
 import java.util.HashMap;
-import java.util.TreeMap;
 
 import com.jason.server.Client;
 import com.jason.server.Response;
+import com.jason.server.ShareDataSet;
 import com.jason.util.MyStringUtil;
 
 /**
@@ -24,9 +24,7 @@ import com.jason.util.MyStringUtil;
  * <li>修改日期：
  */
 public class ClustersService{	
-	private static ClustersService service = new ClustersService();// 服务单实例;// 服务单实例	
-	private TreeMap<Integer,ClustersNode> sortClusters = new TreeMap<Integer,ClustersNode>();// 排序的节点服务器
-	private HashMap<String,ClustersNode> mapClusters = new HashMap<String,ClustersNode>();// 节点服务器映射表
+	private static ClustersService service = new ClustersService();// 服务单实例;// 服务单实例		
 	public static ClustersService getInstance(){
 		return service;
 	}
@@ -68,12 +66,12 @@ public class ClustersService{
 				Integer count = 0;// 数量
 				switch(action){
 					case 1:// 集群服务器需要想管理服务汇报CPU参数，内存参数，工作线程数量，可以处理的连接极限数量，读写监听线程数量，进入监听线程数量，使用的端口
-						ClustersNode clustersNode = this.mapClusters.get(sockector.getRouteAddress());
+						ClustersNode clustersNode = ShareDataSet.getInstance().getMapClusters().get(sockector.getRouteAddress());
 						if(clustersNode == null){
 							clustersNode = new ClustersNode();
 							clustersNode.setNode(sockector);// 设置连接对象
 							
-							this.mapClusters.put(sockector.getRouteAddress(), clustersNode);
+							ShareDataSet.getInstance().getMapClusters().put(sockector.getRouteAddress(), clustersNode);
 						}
 						
 						Integer coreCount = Integer.valueOf(requestData.get(ClustersConstants.FILED_CORE_COUNT));//集群节点服务器CPU内核数量
@@ -92,7 +90,7 @@ public class ClustersService{
 						clustersNode.setLocalCount(localCount);
 						clustersNode.setPort(port);
 						
-						this.sortClusters.put(clustersNode.getClientCount(), clustersNode);// 此处是否优化可考虑
+						ShareDataSet.getInstance().getSortClusters().put(clustersNode.getClientCount(), clustersNode);// 此处是否优化可考虑
 						
 						responseMessage = Response.msgOnlyBody("action=1000");
 						break;
@@ -118,7 +116,7 @@ public class ClustersService{
 					case 6:// 管理服务器管理权限移交和接手
 						break;
 					case 0:// 客户端请求分配服务器和端口地址
-						ClustersNode  node = this.sortClusters.firstEntry().getValue();
+						ClustersNode  node = ShareDataSet.getInstance().getSortClusters().firstEntry().getValue();
 						responseMessage = Response.msgOnlyBody("{ip:'" + node.getNode().getIp() +  "',port:" + node.getPort() + "}");
 						break;
 					case 31:// 节点服务器之间的业务数据交换

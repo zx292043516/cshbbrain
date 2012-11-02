@@ -18,6 +18,7 @@ package com.jason.server.clusters;
  * <li>修改日期：
  */
 public class ClustersConstants {
+	public static final String CLUSTERS_SPLIT_DOT = ":";// 集群协议
 	public static final String CLUSTERS = "CshBBrain";// 集群协议
 	public static final String HOST = "Host";//客户端主机
 	public static final String ACCEPT = "Accept";// 服务器端返回的验证加密串

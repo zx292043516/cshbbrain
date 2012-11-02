@@ -221,7 +221,7 @@ public class MasterServer {
 		
 		if(this.timeOut > 0){
 			this.createClientMonitorThread(serverPriority);// 创建客户端数据接收状态监听线程
-		}
+		}		
 		
 		// 处理集群初始化
 		if(this.clustersSwitch){
@@ -783,7 +783,11 @@ public class MasterServer {
 					
 					// 根据key中的标识位判断是否为集群
 					//sockector.registeHandler(clustersCoder, clustersDecoder, clustersProcesser);// 注册集群处理器
-					sockector.registeHandler(coderHandler, decoderHandler, processHandler);// 注册业务处理器						
+					if(MasterServer.this.clustersSwitch && MasterServer.this.clustersRole == 2){
+						sockector.registeHandler(coderHandler, decoderHandler, clustersProcesser);// 注册业务处理器
+					}else{
+						sockector.registeHandler(coderHandler, decoderHandler, processHandler);// 注册业务处理器
+					}											
 					
 					sk.attach(sockector);
 					Integer index = keyIndex.incrementAndGet();

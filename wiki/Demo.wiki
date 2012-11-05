@@ -1,4 +1,4 @@
-#labels WebSocket,消息推送,CshBBrain,开发实例
+#labels 宝贝鱼,消息推送,CshBBrain,开发实例,WebSocket,集群,分布式
 #实时消息推送类应用实例：股指推送
 = Introduction =
 

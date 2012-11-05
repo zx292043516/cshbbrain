@@ -1,4 +1,4 @@
-#labels CshBBrain,Websocket,NIO,html5,多线程,分布式
+#labels 宝贝鱼,Websocket,NIO,html5,多线程,分布式,CshBBrain,集群
 介绍CshBBrain的整体架构
 
 = Introduction =

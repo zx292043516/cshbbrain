@@ -1,4 +1,4 @@
-#labels CshBBrain,WebSocket,NIO,HTML5,多线程,分布式
+#labels 宝贝鱼,WebSocket,NIO,HTML5,多线程,分布式,CshBBrain,集群
 Hello World for CshBBrain
 = Introduction =
 

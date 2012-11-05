@@ -1,5 +1,5 @@
 #summary 版本发布新闻
-#labels CshBBrain,WebSocket,NIO
+#labels 宝贝鱼,WebSocket,NIO,CshBBrain,集群,分布式,html5
 
 = Introduction =
 

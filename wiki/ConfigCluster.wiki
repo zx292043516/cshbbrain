@@ -1,6 +1,4 @@
-#summary One-sentence summary of this page.
 #labels CshBBrain,宝贝鱼,集群,Cluster,开源WebSocket服务器
-
 = Introduction =
 宝贝鱼(CshBBrain)集群配置使用说明 
 
